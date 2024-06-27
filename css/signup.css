@@ -1,0 +1,99 @@
+*{  
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+   
+height: 88vh;
+background-color: rgba(96, 102, 110, 0); 
+padding: 20px; 
+box-sizing: border-box; 
+border-radius: 20px;
+display: flex;
+flex-direction: column;
+justify-content: center; /* Center vertically */
+align-items: center; /* Center horizontally */
+    
+}
+
+
+
+.top span{
+color: #fff;
+font-size: small;
+padding: 10px 0;
+display: flex;
+justify-content: center;
+}
+.top span a{
+font-weight: 500;
+color: #fff;
+margin-left: 5px;
+}
+header{
+color: #fff;
+font-size: 30px;
+text-align: center;
+padding: 10px 0 30px 0;
+}
+.two-forms{
+display: flex;
+gap: 10px;
+
+}
+.input-field{
+font-size: 15px;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+background: rgba(230, 223, 223, 0.5);
+color: #fbfafa;
+height: 50px;
+width: 100%;
+padding: 0 10px 0 45px;
+border: none;
+margin-bottom: 10px;
+border-radius: 30px;
+outline: none;
+transition: .2s ease;
+}
+.input-field:hover, .input-field:focus{
+background: rgba(255, 255, 255, 0.25);
+}
+::-webkit-input-placeholder{
+color: #fff;
+}
+.input-box i{
+
+left: 17px;
+margin: 20px;
+color: #252424;
+}
+.two-col{
+display: flex;
+justify-content: space-between;
+color: #070606;
+font-size:88%;
+margin-top: 10px;
+}
+.two-col .one{
+display: flex;
+gap: 10px;
+}
+.submit{
+font-size: 15px;
+font-weight: 500;
+color: rgb(255, 251, 251);
+height: 45px;
+width: 100%;
+border: none;
+border-radius: 30px;
+outline: none;
+background: #222831;
+cursor: pointer;
+transition: .3s ease-in-out;
+}
+.submit:hover{
+    background: rgba(20, 18, 23, 0.7);
+}

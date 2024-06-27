@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.book_container {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 15%;
+    margin-right: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bookimg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 10px 10px 5px #939292;
+}
+
+.bookdesc {
+    color: #161A30;
+    text-shadow: 1px 1px 2px;
+    font-family: 'Gill Sans';
+    font-weight: bolder;
+    font-size: 22px;
+    margin-bottom: 3%;
+}
+
+.bookinfo {
+    margin: 0;
+    padding: 0;
+    margin-left: 20px;
+    width: 70%;
+}
+
+.book_title {
+    color: #161A30;
+    text-shadow: 1px 1px 3px;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Segoe UI';
+    font-weight: bolder;
+    font-size: 30px;
+    margin-bottom: 2%;
+}
+
+.author {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 1vh;
+}
+
+.bookcategory {
+    margin: 0px;
+    margin-bottom: 1vh;
+}
+
+.book_id {
+    font-size: 15px;
+    margin: 0px;
+}
+
+.bottominfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.book_description {
+    font-size: 16px;
+    color: #161A30;
+}
+
+.borrowbutton {
+    background: linear-gradient(to bottom right, #102C57, #DAC0A3);
+    border: 0;
+    border-radius: 20px;
+    color: #ffffff;
+    display: inline-block;
+    font-family: system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 2;
+    outline: transparent;
+    padding: 0 1rem;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    margin-top: 1%;
+}
+
+.status {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Media Query for Responsive Design */
+@media only screen and (max-width: 768px) {
+    .book_container {
+        margin: 5%;
+        flex-direction: column;
+    }
+
+    .bookimg {
+        margin-bottom: 5%;
+    }
+
+    .bookinfo {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+.background {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; 
+    background-image: url('allimages/bckground.webp'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    filter: blur(7px); 
+}
