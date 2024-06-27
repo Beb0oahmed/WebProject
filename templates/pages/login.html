@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log In | Library</title>
+    <script src="{% static 'js/all.js' %}"></script>
+    <link rel ="stylesheet" href="{% static 'css/login.css' %}">
+
+</head>
+<body>
+
+        <div class="login-content">
+            <form method="post">
+                {% csrf_token %}
+                <div class="avatar_welcome">
+                <img src="{% static 'images/user.png' %}"> <!--for profile avatar -->
+                <h2 class="title">Welcome</h2>
+                </div>
+                   <div class="input-div one">
+                      <div class="i">
+                              <i class="fas fa-user"></i>
+                      </div>
+                      <div class="div">
+                              <input type="email" class="input" placeholder="E-Mail" id="emailInput" name="email">
+                      </div>
+                   </div>
+                   <div class="input-div pass">
+                      <div class="i"> 
+                            <i class="fas fa-lock"></i> 
+                         <!--FOR LOCK ICON-->
+                      </div>
+                      <div class="div">
+                           <input type="password" class="input" name="pass" placeholder="password" required  minlength="4" maxlength="10" id="passwordInput">
+                   </div>
+                </div>
+                    <p>If you don't have an account, please <a class="signup.html" href="{% url 'signup' %}">sign up</a></p> 
+
+
+
+                <input type="submit" class="btn" value="Login" id="login_btn" >
+                <!-- button -->
+
+            </form>
+    </div>
+    </div>
+</body>
+</html>
+
+{% endblock content %}

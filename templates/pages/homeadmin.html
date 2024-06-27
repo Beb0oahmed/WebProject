@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Library</title>
+    <script src="{% static 'js/all.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/homeadmin.css' %}">
+</head>
+<body>
+    <div class="books_container">
+        <div class="Recommended_Books">Books</div>
+        <table class="book_table">
+            <thead>
+                <tr>
+                    <th>Cover</th>
+                    <th>Title</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>
+                        {% if book.cover_photo %}
+                        <img src="{{ book.cover_photo.url }}" alt="{{ book.title }}" class="book-cover" style="width: 200px; height: 220px;">
+                        {% else %}
+                        <div class="placeholder-cover">No Cover</div>
+                        {% endif %}
+                    </td>
+                    <td>{{ book.title }}</td>
+                    <td>
+                        <a href="{% url 'edit' book_id=book.id %}"><button class="action-btn edit-btn">Edit</button></a>
+                        <form method="post" action="{% url 'delete_book' book_id=book.id %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="action-btn delete-btn">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a href="{% url 'addbook' %}" class="b4">Add Book</a>
+    <div class="background"></div>
+</body>
+</html>
+{% endblock content %}

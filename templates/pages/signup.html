@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="signup.css">
+    <title>Sign Up</title>
+    <script src="{% static 'js/all.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <script>
+        function validateForm() {
+            var username = document.forms["signupForm"]["username"].value;
+            var last = document.forms["signupForm"]["last"].value;
+            var email = document.forms["signupForm"]["email"].value;
+            var password = document.forms["signupForm"]["pass"].value;
+            var confirmPassword = document.forms["signupForm"]["con"].value;
+
+            if (username == "" || last == "" || email == "" || password == "" || confirmPassword == "") {
+                alert("All fields must be filled out");
+                return false;
+            }
+
+            if (password.length < 8) {
+                alert("Password must be at least 8 characters long");
+                return false;
+            }
+
+            if (password != confirmPassword) {
+                alert("Passwords do not match");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <form name="signupForm" method="post" onsubmit="return validateForm()"> <!-- Add form tag with method="post" -->
+        {% csrf_token %} <!-- Add csrf_token for security 3shan yhme -->
+        <div class="register-container" id="register">
+            <div class="top">
+                <span>Have an account?
+                    <a href="{% url 'login' %}" onclick="login()">Login</a>
+                </span>
+                <header>Sign Up</header>
+            </div>
+
+            <!-- Display error messages -->
+            {% if error %}
+            <div class="error-message" style="color: red;">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <!-- Display success message -->
+            {% if success %}
+            <div id="successMessage" style="text-align: center; margin-top: 20px; color: green;">
+                {{ success }}
+            </div>
+            {% endif %}
+
+            <div class="two-forms">
+                <div class="input-box">
+                    <input type="text" class="input-field" placeholder="Firstname" name="username" />
+                    <i class="bx bx-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="text" class="input-field" placeholder="Lastname" name="last" />
+                    <i class="bx bx-user"></i>
+                </div>
+            </div>
+            <div class="input-box">
+                <input type="text" id="emailInput" class="input-field" placeholder="Email" name="email" />
+                <i class="bx bx-envelope"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" id="passwordInput" class="input-field" placeholder="Password" name="pass" />
+            </div>
+            <div class="input-box">
+                <input type="password" id="confirmPasswordInput" class="input-field" placeholder="Confirm Password" name="con" />
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            <div class="input-box">
+                <input type="submit" class="submit" value="Register" />
+            </div>
+        </div>
+        <div class="two-col">
+            <div class="one">
+                <input type="checkbox" id="register-check" />
+                <label for="register-check"> Remember Me</label>
+                <input type="checkbox" id="is_admin" name="is_admin" />
+                <label for="is_admin">Register as admin</label>
+                <input type="checkbox" id="is_user" name="is_user" />
+                <label for="is_user">Register as user</label>
+            </div>
+            <div class="two">
+                <label><a href="#">Terms & conditions</a></label>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+{% endblock content %}

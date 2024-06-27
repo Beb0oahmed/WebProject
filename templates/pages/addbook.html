@@ -1,0 +1,23 @@
+<!-- templates/pages/addbook.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <title>Add Book</title>
+    <script src="{% static 'js/all.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/addbook.css' %}">
+</head>
+<body>
+    <div class="image-container"></div>
+
+    <div class="form-container">
+        <header>ADD BOOK</header>
+        <form id="bookForm" action="{% url 'addbook' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button id="addBtn" type="submit">Add Book</button>
+        </form>
+    </div>
+</body>
+{% endblock content %}

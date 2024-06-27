@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Filter And Search</title>
+  <link rel="stylesheet" href="{% static 'css/homeuser.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#search-input').on('input', function() {
+        var query = $(this).val();
+        $.ajax({
+          url: '{% url "homeuser" %}',
+          data: {
+            'query': query
+          },
+          dataType: 'json',
+          success: function(data) {
+            $('#products').empty();
+            if (data.length === 0) {
+              $('#products').append('<div>No results found</div>');
+            } else {
+              $.each(data, function(index, book) {
+                var cover_photo = book.cover_photo ? '<img src="' + book.cover_photo + '" alt="' + book.title + '" class="book-cover">' : '<div class="placeholder-cover">No Cover</div>';
+                var book_url = book.url;
+                $('#products').append(
+                  '<div class="product-item">' +
+                    '<div class="product-image">' +
+                      '<a href="' + book_url + '">' + cover_photo + '</a>' +
+                    '</div>' +
+                    '<div class="product-details">' +
+                      '<h3>' + book.title + '</h3>' +
+                      '<h5>Category: ' + book.category + '</h5>' +
+                      '<p>Author: ' + book.author + '</p>' +
+                    '</div>' +
+                  '</div>'
+                );
+              });
+            }
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="header">
+    <div id="side_bar" class="side-bar">
+      <div class="user">
+        <img class="user-img" src="{% static 'images/account.png' %}" alt="user_img" width="45px" height="45px">
+        <div class="user-info"></div>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div id="search-container">
+      <input type="search" id="search-input" name="query" placeholder="Search by Title, Category, or Author" />
+      <ul id="searchResults"></ul>
+    </div>
+    <div id="products">
+      {% for book in books %}
+      <div class="product-item">
+        <div class="product-image">
+          {% if book.cover_photo %}
+          <a href="{% url 'bookpguser' book.id %}"><img src="{{ book.cover_photo.url }}" alt="{{ book.title }}" class="book-cover"></a>
+          {% else %}
+          <a href="{% url 'bookpguser' book.id %}"><div class="placeholder-cover">No Cover</div></a>
+          {% endif %}
+        </div>
+        <div class="product-details">
+          <h3><span class="title-label">{{ book.title }}</span></h3>
+          <h5><span class="category-label">Category:</span> {{ book.category }}</h5>
+          <p><span class="author-label">Author:</span> {{ book.author }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>
+{% endblock content %}

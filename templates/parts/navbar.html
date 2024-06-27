@@ -1,0 +1,19 @@
+{% load static %}
+
+<nav class="nav">
+    <div class="nav-logo">
+        <p>BookHub</p>
+    </div>
+    <div class="nav-menu" id="navMenu">
+        <ul>
+            <li><a href="{% url 'home' %}" class="link">Home</a></li>
+            <li><a href="{% url 'about' %}" class="link">About</a></li>
+            <li><a href="{% url 'borrowed' %}" class="link">Borrowed books</a></li>
+            <li><a href="{% url 'signup' %}" class="link">SignUp</a></li>
+            <li><a href="{% url 'login' %}" class="link">logIn</a></li>
+            <li><a href="{% url 'login' %}" class="link">logout</a></li>
+        
+        </ul>
+    </div>
+</nav>
+

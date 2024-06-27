@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ book.title }}</title>
+    <link rel="stylesheet" href="{% static 'css/bookpg.css' %}">
+</head>
+<body>
+    <div class="background"></div>
+    <div class="book_container">
+        <div class="bookimg">
+            <img src="{{  book.cover_photo.url }}" width="360px" height="440px">
+        </div>
+        <div class="bookinfo">
+            <p class="book_title" style="font-family: Lora;"><b>{{ book.title }}</b></p>
+            <p class="author"><i>{{ book.author }}</i></p>
+            <h4 class="bookcategory">{{ book.category }}</h4>
+            <div class="descinfo">
+                <div class="bookdesc">Book Description</div>
+                <p class="description">{{ book.description }}</p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
+{% endblock content %}

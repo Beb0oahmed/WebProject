@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/homeuser.css' %}">
+</head>
+<body>
+  <div class="header">
+    <div id="side_bar" class="side-bar">
+      <div class="user">
+        <img class="user-img" src="{% static 'images/account.png' %}" alt="user_img" width="45px" height="45px">
+        <div class="user-info"></div>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper">
+    <h2 style="margin-top: 20px; text-align: center;">Borrowed Books</h2>
+    
+    <div id="products">
+      <!-- Borrowed books will be loaded here via AJAX -->
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $.ajax({
+        url: "{% url 'borrowed' %}",
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+          var productsDiv = $('#products');
+          productsDiv.empty();
+          data.books.forEach(function(book) {
+            var bookHtml = `
+              <div class="product-item">
+                <div class="product-image">
+                  ${book.cover_photo ? `<a href="/book/${book.id}/"><img src="${book.cover_photo}" alt="${book.title}" class="book-cover"></a>` : `<a href="/book/${book.id}/"><div class="placeholder-cover">No Cover</div></a>`}
+                </div>
+                <div class="product-details">
+                  <h3><span class="title-label">${book.title}</span></h3>
+                  <h5><span class="category-label">Category:</span> ${book.category}</h5>
+                  <p><span class="author-label">Author:</span> ${book.author}</p>
+                </div>
+              </div>
+            `;
+            productsDiv.append(bookHtml);
+          });
+        }
+      });
+    });
+  </script>
+</body>
+{% endblock %}
